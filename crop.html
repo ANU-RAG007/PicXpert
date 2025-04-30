@@ -1,254 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-    footer {
-        background-color: #007BFF;
-        color: white;
-        text-align: center;
-        padding: 15px;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        margin-top: 40px;
-        font-size: 14px;
+  <meta charset="UTF-8">
+  <title>Crop Image - PicXpert</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+
+  header {
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    text-align: left;
+}
+
+/* Home button on the right */
+.home-button {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Responsive header for mobile screens */
+@media (max-width: 600px) {
+    header {
+        flex-direction: row;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .home-button {
+        margin-left: auto;
+    }
+}
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .home-button {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .home-button span {
+      margin-left: 8px;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"],
+    button {
+      padding: 10px 16px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    canvas {
+      margin-top: 20px;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      background-color: white;
+    }
+
+    a#download {
+      margin-top: 20px;
+      display: inline-block;
+      font-size: 16px;
+      color: white;
+      background-color: #007BFF;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
     }
 
     /* Support Section */
     .support {
-        margin-top: 50px;
-        margin-bottom: 20px;
-        text-align: center;
+      margin: 40px 0 20px;
     }
 
     .support-link {
-        text-decoration: none;
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #ffffff;
-        padding: 15px 25px;
-        border: 2px solid #007BFF;
-        border-radius: 20px;
-        transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 15px 25px;
+      border: 2px solid #007BFF;
+      border-radius: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      max-width: 300px;
+      margin: 10px auto;
     }
 
     .support-link:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-        border-color: #0056b3;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+      border-color: #0056b3;
     }
 
     .support-icon {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 10px;
-        animation: bounce 2s infinite;
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+      animation: bounce 2s infinite;
     }
 
     .support-link p {
-        color: #007BFF;
-        font-size: 18px;
-        font-weight: bold;
-        margin: 0;
+      color: #007BFF;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
     }
 
     @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0);
-        }
-        40% {
-            transform: translateY(-10px);
-        }
-        60% {
-            transform: translateY(-5px);
-        }
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
     }
-</style>
 
-    <meta charset="UTF-8">
-    <title>Crop Image - PixelTune</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            text-align: center;
-        }
+    footer {
+      background-color: #007BFF;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
 
-        header {
-            background-color: #007BFF;
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
 
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
+      header h1 {
+        font-size: 22px;
+      }
 
-        .home-button {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-        }
+      .home-button {
+        font-size: 16px;
+      }
 
-        .home-button span {
-            margin-left: 8px;
-        }
+      h2 {
+        font-size: 20px;
+      }
 
-        .container {
-            margin-top: 30px;
-        }
+      input, button {
+        width: 90%;
+        max-width: 300px;
+        font-size: 15px;
+      }
 
-        canvas {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            background-color: white;
-        }
+      .support-link {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
 
-        input, button {
-            margin: 10px;
-            padding: 8px;
-            font-size: 16px;
-        }
-    </style>
+      .support-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>🎨 PicXpert</h1>
-    <a href="index.html" class="home-button">
-        🏠<span>Home</span>
-    </a>
+  <h1>🎨 PicXpert</h1>
+  <a href="index.html" class="home-button">🏠<span>Home</span></a>
 </header>
 
 <div class="container">
-    <h2>Crop Your Image</h2>
+  <h2>Crop Your Image</h2>
 
-    <input type="file" id="upload" accept="image/*"><br>
-    <button onclick="cropImage()">Crop Selected Area</button><br><br>
+  <input type="file" id="upload" accept="image/*"><br>
+  <button onclick="cropImage()">Crop Selected Area</button><br><br>
 
-    <canvas id="canvas"></canvas><br><br>
+  <canvas id="canvas"></canvas><br><br>
 
-    <a id="download" style="display: none;" download="cropped-image.png">Download Cropped Image</a>
+  <a id="download" style="display: none;" download="cropped-image.png">Download Cropped Image</a>
 </div>
 
 <script>
-    const uploadInput = document.getElementById('upload');
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    const downloadLink = document.getElementById('download');
+  const uploadInput = document.getElementById('upload');
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const downloadLink = document.getElementById('download');
 
-    let image = new Image();
-    let startX, startY, endX, endY;
-    let isDragging = false;
+  let image = new Image();
+  let startX, startY, endX, endY;
+  let isDragging = false;
 
-    uploadInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                image.onload = function() {
-                    canvas.width = image.width;
-                    canvas.height = image.height;
-                    ctx.drawImage(image, 0, 0);
-                }
-                image.src = event.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-    });
+  uploadInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        image.onload = function() {
+          canvas.width = image.width;
+          canvas.height = image.height;
+          ctx.drawImage(image, 0, 0);
+        };
+        image.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 
-    canvas.addEventListener('mousedown', function(e) {
-        const rect = canvas.getBoundingClientRect();
-        startX = e.clientX - rect.left;
-        startY = e.clientY - rect.top;
-        isDragging = true;
-    });
+  canvas.addEventListener('mousedown', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    startX = e.clientX - rect.left;
+    startY = e.clientY - rect.top;
+    isDragging = true;
+  });
 
-    canvas.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-            const rect = canvas.getBoundingClientRect();
-            endX = e.clientX - rect.left;
-            endY = e.clientY - rect.top;
-            redrawCanvas();
-        }
-    });
+  canvas.addEventListener('mousemove', function(e) {
+    if (isDragging) {
+      const rect = canvas.getBoundingClientRect();
+      endX = e.clientX - rect.left;
+      endY = e.clientY - rect.top;
+      redrawCanvas();
+    }
+  });
 
-    canvas.addEventListener('mouseup', function() {
-        isDragging = false;
-    });
+  canvas.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
 
-    function redrawCanvas() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(image, 0, 0);
-        if (isDragging) {
-            ctx.strokeStyle = 'red';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(startX, startY, endX - startX, endY - startY);
-        }
+  function redrawCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0);
+    if (isDragging) {
+      ctx.strokeStyle = 'red';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(startX, startY, endX - startX, endY - startY);
+    }
+  }
+
+  function cropImage() {
+    if (startX === undefined || startY === undefined || endX === undefined || endY === undefined) {
+      alert('Please select an area first!');
+      return;
     }
 
-    function cropImage() {
-        if (startX === undefined || startY === undefined || endX === undefined || endY === undefined) {
-            alert('Please select an area first!');
-            return;
-        }
+    const cropWidth = endX - startX;
+    const cropHeight = endY - startY;
 
-        const cropWidth = endX - startX;
-        const cropHeight = endY - startY;
-
-        if (cropWidth <= 0 || cropHeight <= 0) {
-            alert('Please select a valid crop area!');
-            return;
-        }
-
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = Math.abs(cropWidth);
-        tempCanvas.height = Math.abs(cropHeight);
-        const tempCtx = tempCanvas.getContext('2d');
-
-        tempCtx.drawImage(canvas, startX, startY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
-
-        const croppedDataURL = tempCanvas.toDataURL('image/png');
-        downloadLink.href = croppedDataURL;
-        downloadLink.style.display = 'inline-block';
-        downloadLink.textContent = 'Download Cropped Image';
-        
-        // Show cropped image
-        canvas.width = cropWidth;
-        canvas.height = cropHeight;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(tempCanvas, 0, 0);
+    if (cropWidth <= 0 || cropHeight <= 0) {
+      alert('Please select a valid crop area!');
+      return;
     }
+
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = Math.abs(cropWidth);
+    tempCanvas.height = Math.abs(cropHeight);
+    const tempCtx = tempCanvas.getContext('2d');
+
+    tempCtx.drawImage(canvas, startX, startY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+
+    const croppedDataURL = tempCanvas.toDataURL('image/png');
+    downloadLink.href = croppedDataURL;
+    downloadLink.style.display = 'inline-block';
+    downloadLink.textContent = 'Download Cropped Image';
+
+    // Show cropped image
+    canvas.width = cropWidth;
+    canvas.height = cropHeight;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(tempCanvas, 0, 0);
+  }
 </script>
 
-<!-- Support Section -->
 <div class="support">
-    <!-- Redirects to Gmail with a prefilled email -->
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alexcarry08639@gmail.com&su=Support%20Request&body=Please%20type%20your%20message%20here." target="_blank" class="support-link">
-        <!-- Non-copyrighted icon -->
-        <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Support" class="support-icon">
-        <p>Contact Support</p>
-    </a>
-</div>
-<!-- Promotional Support Button -->
-<div class="support">
-    <a href="donation.html" class="support-link">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Support Me" class="support-icon">
-        <p>Support Me 💰</p>
-    </a>
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alexcarry08639@gmail.com&su=Support%20Request&body=Please%20type%20your%20message%20here." target="_blank" class="support-link">
+    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Support" class="support-icon">
+    <p>Contact Support</p>
+  </a>
 </div>
 
+<div class="support">
+  <a href="donation.html" class="support-link">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Support Me" class="support-icon">
+    <p>Support Me 💰</p>
+  </a>
+</div>
 
 <footer>
-    <p>© 2025 PicXpert | All rights reserved.</p>
+  <p>© 2025 PicXpert | All rights reserved.</p>
 </footer>
 
 </body>
