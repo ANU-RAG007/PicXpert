@@ -1,159 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>PicXpert - Perfect Your Images</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: white;
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <title>PicXpert - Perfect Your Images</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        header {
-            background-color: #007BFF;
-            padding: 30px 20px;
-            text-align: center;
-            color: white;
-        }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: white;
+      color: #333;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 48px;
-        }
+    header {
+      background-color: #007BFF;
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+    }
 
-        header p {
-            margin-top: 10px;
-            font-size: 18px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
 
-        .container {
-            text-align: center;
-            margin-top: 50px;
-        }
+    header p {
+      margin-top: 10px;
+      font-size: 1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
 
-        .button {
-            display: inline-block;
-            margin: 20px;
-            padding: 20px 40px;
-            font-size: 20px;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-        }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      gap: 20px;
+    }
 
-        .button:hover {
-            background-color: #0056b3;
-        }
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: white;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
 
-        /* Support Section */
-        .support {
-            margin-top: 50px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    .button:hover {
+      background-color: #0056b3;
+    }
 
-        .support-link {
-            text-decoration: none;
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #ffffff;
-            padding: 15px 25px;
-            border: 2px solid #007BFF;
-            border-radius: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .support {
+      text-align: center;
+      padding: 20px;
+    }
 
-        .support-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-            border-color: #0056b3;
-        }
+    .support-link {
+      text-decoration: none;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 15px 25px;
+      border: 2px solid #007BFF;
+      border-radius: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      width: 100%;
+      max-width: 300px;
+    }
 
-        .support-icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 10px;
-            animation: bounce 2s infinite;
-        }
+    .support-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+      border-color: #0056b3;
+    }
 
-        .support-link p {
-            color: #007BFF;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0;
-        }
+    .support-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+      animation: bounce 2s infinite;
+    }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
+    .support-link p {
+      color: #007BFF;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
 
-        footer {
-            background-color: #007BFF;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 40px;
-            font-size: 14px;
-        }
-    </style>
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    footer {
+      background-color: #007BFF;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 0.95rem;
+        padding: 0 10px;
+      }
+
+      .button, .support-link {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+
+      .support-icon {
+        width: 50px;
+        height: 50px;
+      }
+
+      .support {
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
+  <header>
     <h1>🎨 PicXpert</h1>
     <p>
-        PicXpert helps you instantly crop or resize your images to perfection.<br>
-        No downloads, no hassle. Simple, fast, and powerful.<br>
-        Whether you're editing for social media or professional use, PicXpert tunes your images just right.<br>
-        Get started below!
+      PicXpert helps you instantly crop or resize your images to perfection.<br>
+      No downloads, no hassle. Simple, fast, and powerful.<br>
+      Whether you're editing for social media or professional use, PicXpert tunes your images just right.<br>
+      Get started below!
     </p>
-</header>
+  </header>
 
-<div class="container">
+  <div class="container">
     <a href="crop.html" class="button">Crop the Image</a>
     <a href="resize.html" class="button">Resize the Image</a>
-</div>
+  </div>
 
-<!-- Support Button -->
-<div class="support">
+  <div class="support">
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alexcarry08639@gmail.com&su=Support%20Request&body=Please%20describe%20your%20issue%20here." target="_blank" class="support-link">
-        <img src="https://cdn-icons-png.flaticon.com/512/4213/4213473.png" alt="Support" class="support-icon">
-        <p>Contact Support</p>
+      <img src="https://cdn-icons-png.flaticon.com/512/4213/4213473.png" alt="Support" class="support-icon">
+      <p>Contact Support</p>
     </a>
-</div>
-<!-- Promotional Support Button -->
-<div class="support">
-    <a href="donation.html" class="support-link">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Support Me" class="support-icon">
-        <p>Support Me 💰</p>
-    </a>
-</div>
+  </div>
 
-<footer>
-    <p>© 2025 PicXpert  | All rights reserved.</p>
-</footer>
+  <div class="support">
+    <a href="donation.html" class="support-link">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Support Me" class="support-icon">
+      <p>Support Me 💰</p>
+    </a>
+  </div>
+
+  <footer>
+    <p>© 2025 PicXpert | All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
